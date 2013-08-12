@@ -84,6 +84,11 @@ static NSString* kRemainingDownloadItems = @"remainingDownloadItems";
     return [_operationQueue operationCount];
 }
 
+-(void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma DownloadItem Observers
 
 -(void)receiveDownloadItemCompleteNotification:(NSNotification*)notification {
