@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BatchDownloader.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, DownloadItemDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, BatchDownloaderDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

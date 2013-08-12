@@ -7,18 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DownloadItemDelegate.h"
 
-@protocol InternalDownloadItemDelegate <NSObject>
-
--(void)downloadItemComplete:(DownloadItem*)downloadItem;
-
-@end
+static NSString* kDownloadItemComplete = @"DownloadItemComplete";
+static NSString* kDownloadItemFailed = @"DownloadItemFailed";
+static NSString* kDownloadItemDuplicate = @"DownloadItemDuplicate";
+static NSString* kDownloadItemFinished = @"DownloadItemFinished";
 
 @interface DownloadItem : NSOperation <NSCoding>
 
-@property (nonatomic, strong) id<DownloadItemDelegate> delegate;
-@property (nonatomic, strong) id<InternalDownloadItemDelegate> internalDelegate;
 @property (nonatomic, assign) BOOL shouldOverwritePath;
 
 @property (nonatomic, strong) NSString* url;

@@ -9,10 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "DownloadItem.h"
 
-@interface BatchDownloader : NSObject <InternalDownloadItemDelegate>
+@protocol BatchDownloaderDelegate <NSObject>
+
+@optional
+-(void)downloadItemComplete:(DownloadItem*)downloadItem;
+-(void)downloadItemFailed:(DownloadItem*)downloadItem;
+-(void)downloadItemDuplicate:(DownloadItem*)downloadItem;
+-(void)queueComplete;
+
+@end
+
+
+@interface BatchDownloader : NSObject
 
 @property (nonatomic, assign) NSInteger maxConcurrentOperationCount;
-@property (nonatomic, strong) id<DownloadItemDelegate> downloadItemDelegate;
+@property (nonatomic, strong) id<BatchDownloaderDelegate> delegate;
 @property (nonatomic, assign) BOOL shouldOverwritePath;
 
 -(void)addItem:(DownloadItem*)item;

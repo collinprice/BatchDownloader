@@ -15,9 +15,9 @@
 {
     
     self.batchDownloader = [[BatchDownloader alloc] init];
-    self.batchDownloader.downloadItemDelegate = self;
+    self.batchDownloader.delegate = self;
     
-    [OSMTileDownloader downloadTilesWithQueue:self.batchDownloader withLatitude:43.08 withLongitude:-79.07 withRadius:10];
+    [OSMTileDownloader downloadTilesWithQueue:self.batchDownloader withLatitude:43.08 withLongitude:-79.07 withRadius:1];
     
     return YES;
 }
@@ -62,21 +62,26 @@
     [self.batchDownloader archiveOperations];
 }
 
-#pragma DownloadItem Delegate
-
--(void)downloadItemDidFinish:(DownloadItem *)downloadItem {
+-(void)downloadItemComplete:(DownloadItem *)downloadItem {
     
-    NSLog(@"Finished: %@", downloadItem.url);
+    NSLog(@"Complete: %@", downloadItem.url);
 }
 
--(void)downloadItemDiskWriteFailed:(DownloadItem *)downloadItem {
+-(void)downloadItemDuplicate:(DownloadItem *)downloadItem {
     
-    NSLog(@"WriteFailed: %@", downloadItem.url);
+    NSLog(@"Duplicate: %@", downloadItem.url);
 }
 
--(void)downloadItemDownloadFailed:(DownloadItem *)downloadItem {
+-(void)downloadItemFailed:(DownloadItem *)downloadItem {
     
-    NSLog(@"DownloadFailed: %@", downloadItem.url);
+    NSLog(@"Failed: %@", downloadItem.url);
 }
+
+-(void)queueComplete {
+    
+    NSLog(@"complete");
+}
+
+
 
 @end

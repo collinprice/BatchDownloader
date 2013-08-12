@@ -14,6 +14,7 @@
     
     [aCoder encodeObject:self.url forKey:@"url"];
     [aCoder encodeObject:self.path forKey:@"path"];
+    [aCoder encodeBool:self.shouldOverwritePath forKey:@"override"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
@@ -23,6 +24,7 @@
         
         self.url = [aDecoder decodeObjectForKey:@"url"];
         self.path = [aDecoder decodeObjectForKey:@"path"];
+        self.shouldOverwritePath = [aDecoder decodeBoolForKey:@"override"];
     }
     return self;
 }
@@ -35,35 +37,21 @@
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.path];
     
     if (fileExists) {
-        if ([self.delegate respondsToSelector:@selector(downloadItemDuplicatePath:)]) {
-            [self.delegate downloadItemDuplicatePath:self];
-        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadItemDuplicate object:self];
     }
     
     if ( !fileExists || self.shouldOverwritePath) {
 
         NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.url]];
         if (data == nil) {
-            if ([self.delegate respondsToSelector:@selector(downloadItemDownloadFailed:)]) {
-                [self.delegate downloadItemDownloadFailed:self];
-            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadItemFailed object:self];
         } else {
-            BOOL writeStatus = [data writeToFile:self.path atomically:NO];
-            
-            if (!writeStatus) {
-                if ([self.delegate respondsToSelector:@selector(downloadItemDiskWriteFailed:)]) {
-                    [self.delegate downloadItemDiskWriteFailed:self];
-                }
-            }
-            
-            if ([self.delegate respondsToSelector:@selector(downloadItemDidFinish:)]) {
-                [self.delegate downloadItemDidFinish:self];
-            }
+            [data writeToFile:self.path atomically:NO];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadItemComplete object:self];
         }
-        
     }
     
-    [self.internalDelegate downloadItemComplete:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDownloadItemFinished object:self];
 }
 
 @end

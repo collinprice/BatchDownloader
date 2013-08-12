@@ -37,7 +37,6 @@
 		F0AC62E117B3E1140036BC78 /* BatchDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatchDownloader.m; sourceTree = "<group>"; };
 		F0AC62E217B3E1140036BC78 /* DownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadItem.h; sourceTree = "<group>"; };
 		F0AC62E317B3E1140036BC78 /* DownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadItem.m; sourceTree = "<group>"; };
-		F0AC62E417B3E1140036BC78 /* DownloadItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadItemDelegate.h; sourceTree = "<group>"; };
 		F0AC62E517B3E1140036BC78 /* OSMTileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMTileDownloader.h; sourceTree = "<group>"; };
 		F0AC62E617B3E1140036BC78 /* OSMTileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSMTileDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +88,6 @@
 				F0AC62E117B3E1140036BC78 /* BatchDownloader.m */,
 				F0AC62E217B3E1140036BC78 /* DownloadItem.h */,
 				F0AC62E317B3E1140036BC78 /* DownloadItem.m */,
-				F0AC62E417B3E1140036BC78 /* DownloadItemDelegate.h */,
 				F0AC62E517B3E1140036BC78 /* OSMTileDownloader.h */,
 				F0AC62E617B3E1140036BC78 /* OSMTileDownloader.m */,
 				F0AC62CC17B3E0710036BC78 /* AppDelegate.h */,
@@ -297,6 +295,7 @@
 				F0AC62DF17B3E0710036BC78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

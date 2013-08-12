@@ -23,6 +23,11 @@ static NSString* kRemainingDownloadItems = @"remainingDownloadItems";
         _operationQueue = [[NSOperationQueue alloc] init];
         _operationQueue.maxConcurrentOperationCount = 4;
         self.shouldOverwritePath = NO;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDownloadItemCompleteNotification:) name:kDownloadItemComplete object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDownloadItemFailedNotification:) name:kDownloadItemFailed object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDownloadItemDuplicateNotification:) name:kDownloadItemDuplicate object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDownloadItemFinishedNotification:) name:kDownloadItemFinished object:nil];
     }
     return self;
 }
@@ -34,7 +39,6 @@ static NSString* kRemainingDownloadItems = @"remainingDownloadItems";
 
 -(void)addItem:(DownloadItem*)item {
     
-    item.delegate = self.downloadItemDelegate;
     [_operationQueue addOperation:item];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -80,11 +84,35 @@ static NSString* kRemainingDownloadItems = @"remainingDownloadItems";
     return [_operationQueue operationCount];
 }
 
-#pragma InternalDownloadItem Delegate
+#pragma DownloadItem Observers
 
--(void)downloadItemComplete:(DownloadItem *)downloadItem {
+-(void)receiveDownloadItemCompleteNotification:(NSNotification*)notification {
+    
+    if ([self.delegate respondsToSelector:@selector(downloadItemComplete:)]) {
+        [self.delegate downloadItemComplete:(DownloadItem*)notification.object];
+    }
+}
+
+-(void)receiveDownloadItemFailedNotification:(NSNotification*)notification {
+    
+    if ([self.delegate respondsToSelector:@selector(downloadItemFailed:)]) {
+        [self.delegate downloadItemFailed:(DownloadItem*)notification.object];
+    }
+}
+
+-(void)receiveDownloadItemDuplicateNotification:(NSNotification*)notification {
+    
+    if ([self.delegate respondsToSelector:@selector(downloadItemDuplicate:)]) {
+        [self.delegate downloadItemDuplicate:(DownloadItem*)notification.object];
+    }
+}
+
+-(void)receiveDownloadItemFinishedNotification:(NSNotification*)notification {
     
     if ([_operationQueue operationCount] <= 1) {
+        if ([self.delegate respondsToSelector:@selector(queueComplete)]) {
+            [self.delegate queueComplete];
+        }
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
 }
