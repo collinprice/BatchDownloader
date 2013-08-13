@@ -17,7 +17,7 @@
     self.batchDownloader = [[BatchDownloader alloc] init];
     self.batchDownloader.delegate = self;
     
-    [OSMTileDownloader downloadTilesWithQueue:self.batchDownloader withLatitude:43.08 withLongitude:-79.07 withRadius:1];
+    [OSMTileDownloader downloadTilesWithQueue:self.batchDownloader withLatitude:43.08 withLongitude:-79.07 withRadius:10];
     
     return YES;
 }
@@ -45,7 +45,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
-
+    
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -77,11 +77,16 @@
     NSLog(@"Failed: %@", downloadItem.url);
 }
 
--(void)queueComplete {
-    
+-(void)queueComplete:(NSOperationQueue *)queue {
     NSLog(@"complete");
 }
 
+-(void)queueResumed:(NSOperationQueue *)queue {
+    NSLog(@"resumed");
+}
 
+-(void)queueSuspended:(NSOperationQueue *)queue {
+    NSLog(@"suspended");
+}
 
 @end

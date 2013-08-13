@@ -18,6 +18,8 @@
 		F0AC62E717B3E1140036BC78 /* BatchDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC62E117B3E1140036BC78 /* BatchDownloader.m */; };
 		F0AC62E817B3E1140036BC78 /* DownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC62E317B3E1140036BC78 /* DownloadItem.m */; };
 		F0AC62E917B3E1140036BC78 /* OSMTileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AC62E617B3E1140036BC78 /* OSMTileDownloader.m */; };
+		F0F07DBF17BAAD9000037983 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F07DBE17BAAD9000037983 /* Reachability.m */; };
+		F0F07DC117BAADE900037983 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F07DC017BAADE900037983 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,9 @@
 		F0AC62E317B3E1140036BC78 /* DownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadItem.m; sourceTree = "<group>"; };
 		F0AC62E517B3E1140036BC78 /* OSMTileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMTileDownloader.h; sourceTree = "<group>"; };
 		F0AC62E617B3E1140036BC78 /* OSMTileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSMTileDownloader.m; sourceTree = "<group>"; };
+		F0F07DBD17BAAD9000037983 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability.h; sourceTree = "<group>"; };
+		F0F07DBE17BAAD9000037983 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
+		F0F07DC017BAADE900037983 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F07DC117BAADE900037983 /* SystemConfiguration.framework in Frameworks */,
 				F0AC62BE17B3E0700036BC78 /* UIKit.framework in Frameworks */,
 				F0AC62C017B3E0700036BC78 /* Foundation.framework in Frameworks */,
 			);
@@ -75,6 +81,7 @@
 		F0AC62BC17B3E0700036BC78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0F07DC017BAADE900037983 /* SystemConfiguration.framework */,
 				F0AC62BD17B3E0700036BC78 /* UIKit.framework */,
 				F0AC62BF17B3E0700036BC78 /* Foundation.framework */,
 			);
@@ -84,6 +91,8 @@
 		F0AC62C317B3E0700036BC78 /* BatchDownloader */ = {
 			isa = PBXGroup;
 			children = (
+				F0F07DBD17BAAD9000037983 /* Reachability.h */,
+				F0F07DBE17BAAD9000037983 /* Reachability.m */,
 				F0AC62E017B3E1140036BC78 /* BatchDownloader.h */,
 				F0AC62E117B3E1140036BC78 /* BatchDownloader.m */,
 				F0AC62E217B3E1140036BC78 /* DownloadItem.h */,
@@ -181,6 +190,7 @@
 				F0AC62E717B3E1140036BC78 /* BatchDownloader.m in Sources */,
 				F0AC62E817B3E1140036BC78 /* DownloadItem.m in Sources */,
 				F0AC62E917B3E1140036BC78 /* OSMTileDownloader.m in Sources */,
+				F0F07DBF17BAAD9000037983 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

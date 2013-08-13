@@ -7,6 +7,7 @@
 //
 
 #import "DownloadItem.h"
+#import "Reachability.h"
 
 @implementation DownloadItem
 

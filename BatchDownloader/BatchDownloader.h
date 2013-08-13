@@ -15,7 +15,9 @@
 -(void)downloadItemComplete:(DownloadItem*)downloadItem;
 -(void)downloadItemFailed:(DownloadItem*)downloadItem;
 -(void)downloadItemDuplicate:(DownloadItem*)downloadItem;
--(void)queueComplete;
+-(void)queueComplete:(NSOperationQueue*)queue;
+-(void)queueSuspended:(NSOperationQueue*)queue;
+-(void)queueResumed:(NSOperationQueue*)queue;
 
 @end
 
